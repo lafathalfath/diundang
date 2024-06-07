@@ -17,6 +17,7 @@ const Index = ({ auth, all_undangan }) => {
         header={<h2 className="font-semibold text-xl text-gray-800 leading-tight">Buat Undangan</h2>}
     >
         <Head title="Undangan"/>
+        
         <main className="p-10">
             <div className="flex items-center justify-end">
                 <Link href={route('user.undangan.buat.view')} className="btn btn-success text-white">+ Tambah</Link>
@@ -42,8 +43,8 @@ const Index = ({ auth, all_undangan }) => {
                                         <td>{undangan.title}</td>
                                         <td>{undangan.updated_at}</td>
                                         <td>
-                                            <Link href={route(`guest.${undangan.slug}`)} className="hover:text-blue-500 hover:underline">
-                                                {route(`guest.${undangan.slug}`)}
+                                            <Link href={`/${undangan.slug}`} className="hover:text-blue-500 hover:underline">
+                                                {`${window.location.origin}/${undangan.slug}`}
                                             </Link>
                                         </td>
                                         <td className="flex items-center gap-2">
@@ -56,6 +57,7 @@ const Index = ({ auth, all_undangan }) => {
                                                 className="btn btn-sm btn-error text-white"
                                             >Hapus</button>
                                             <Link href={route('user.undangan.edit', undangan.id)} className="btn btn-sm btn-warning">Ubah</Link>
+                                            <Link href={route('user.undangan.configure.view', undangan.id)} className="btn btn-sm btn-ghost bg-gray-400">Konfigurasi</Link>
                                         </td>
                                     </tr>
                                 })}

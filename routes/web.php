@@ -46,6 +46,8 @@ Route::middleware('auth')->group(function () {
             Route::post('/store', [UndanganController::class, 'store'])->name('user.undangan.store');
             Route::get('/{id}/ubah', [UndanganController::class, 'edit'])->name('user.undangan.edit');
             Route::put('/{id}/update', [UndanganController::class, 'update'])->name('user.undangan.update');
+            Route::get('/{id}/konfigurasi', [UndanganController::class, 'configure'])->name('user.undangan.configure.view');
+
             Route::delete('/{id}/destroy', [UndanganController::class, 'destroy'])->name('user.undangan.destroy');
         });
     });

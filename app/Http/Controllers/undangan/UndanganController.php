@@ -76,6 +76,14 @@ class UndanganController extends Controller
         return redirect()->route('user.undangan.view')->with('success', 'undangan berhasil diperbarui');
     }
 
+    public function configure($id) {
+        $undangan = Undangan::find($id);
+        if (!$undangan) return redirect()->back()->withErrors('undangan tidak ditemukan');
+        if ($undangan->user_id != Auth::user()->id) return redirect()->back()->withErrors('undangan tidak ditemukan');
+
+        return Inertia::render('user/undangan/configure', ['undangan' => $undangan]);
+    }
+
     public function destroy($id) {
         $undangan = Undangan::find($id);
         if (!$undangan) return redirect()->back()->withErrors('undangan tidak ditemukan');
