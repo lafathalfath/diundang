@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\undangan;
 
 use App\Http\Controllers\Controller;
+use App\Models\mComponent;
 use App\Models\Undangan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -81,7 +82,17 @@ class UndanganController extends Controller
         if (!$undangan) return redirect()->back()->withErrors('undangan tidak ditemukan');
         if ($undangan->user_id != Auth::user()->id) return redirect()->back()->withErrors('undangan tidak ditemukan');
 
-        return Inertia::render('user/undangan/configure', ['undangan' => $undangan]);
+        $undangan->section = $undangan->section;
+        foreach ($undangan->section as $key=>$section) {
+            $undangan->section[$key]->component = $section->component;
+        }
+        
+        $all_components = mComponent::get();
+
+        return Inertia::render('user/undangan/configure', [
+            'undangan' => $undangan,
+            'all_components', $all_components,
+    ]);
     }
 
     public function destroy($id) {

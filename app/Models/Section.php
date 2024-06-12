@@ -17,7 +17,7 @@ class Section extends Model
         return $this->belongsTo(mComponent::class);
     }
 
-    public function page_undangan() : HasMany {
-        return $this->hasMany(PageUndangan::class);
+    public function page_undangan() : BelongsTo {
+        return $this->belongsTo(Undangan::class);
     }
 }

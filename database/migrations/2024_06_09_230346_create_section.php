@@ -11,14 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('page_undangan', function (Blueprint $table) {
+        Schema::create('section', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->bigInteger('component_id')->unsigned();
             $table->bigInteger('undangan_id')->unsigned();
-            $table->bigInteger('section_id')->unsigned();
             $table->timestamps();
 
+            $table->foreign('component_id')->references('id')->on('m_component')->onDelete('cascade');
             $table->foreign('undangan_id')->references('id')->on('undangan')->onDelete('cascade');
-            $table->foreign('section_id')->references('id')->on('section')->onDelete('cascade');
         });
     }
 
@@ -27,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('page_undangan');
+        Schema::dropIfExists('section');
     }
 };

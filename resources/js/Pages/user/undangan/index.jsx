@@ -57,7 +57,7 @@ const Index = ({ auth, all_undangan }) => {
                                                 className="btn btn-sm btn-error text-white"
                                             >Hapus</button>
                                             <Link href={route('user.undangan.edit', undangan.id)} className="btn btn-sm btn-warning">Ubah</Link>
-                                            <Link href={route('user.undangan.configure.view', undangan.id)} className="btn btn-sm btn-ghost bg-gray-400">Konfigurasi</Link>
+                                            <Link href={route('user.undangan.configure.view', undangan.id)} className="btn btn-sm btn-ghost bg-gray-400 text-white">Konfigurasi</Link>
                                         </td>
                                     </tr>
                                 })}
